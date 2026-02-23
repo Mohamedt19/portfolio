@@ -43,7 +43,17 @@ function Badge({ children }: { children: string }) {
 }
 
 function ProjectCard(p: (typeof projects)[number]) {
-  const { title, subtitle, tech, highlights, demoUrl, repoUrl, imageUrl } = p;
+  const {
+    title,
+    subtitle,
+    tech,
+    highlights,
+    demoUrl,
+    repoUrl,
+    imageUrl,
+    imageFit = "cover",
+    imagePos = "center",
+  } = p;
 
   const primaryLink = demoUrl || repoUrl || "";
   const clickable = Boolean(primaryLink);
@@ -55,9 +65,18 @@ function ProjectCard(p: (typeof projects)[number]) {
           className={`thumb ${!clickable ? "thumbDisabled" : ""}`}
           href={clickable ? primaryLink : undefined}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
-          <img className="thumbImg" src={imageUrl} alt={`${title} preview`} />
+          <img
+            className="thumbImg"
+            src={imageUrl}
+            alt={`${title} preview`}
+            style={{
+              objectFit: imageFit,
+              objectPosition: imagePos,
+            }}
+            loading="lazy"
+          />
         </a>
       )}
 
@@ -81,13 +100,17 @@ function ProjectCard(p: (typeof projects)[number]) {
       <div className="actions">
         <a className="btn" href="#contact">Contact</a>
 
-        <a className="btnPrimary" href={demoUrl} target="_blank" rel="noreferrer">
-          Live Demo
-        </a>
+        {demoUrl && (
+          <a className="btnPrimary" href={demoUrl} target="_blank" rel="noopener noreferrer">
+            Live Demo
+          </a>
+        )}
 
-        <a className="btn" href={repoUrl} target="_blank" rel="noreferrer">
-          GitHub
-        </a>
+        {repoUrl && (
+          <a className="btn" href={repoUrl} target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+        )}
       </div>
     </article>
   );
@@ -127,11 +150,11 @@ export default function App() {
           </nav>
 
           <div className="navIcons">
-            <a className="iconLink" href="https://github.com/Mohamedt19" target="_blank">
+            <a className="iconLink" href="https://github.com/Mohamedt19" target="_blank" rel="noopener noreferrer">
               <GitHubIcon />
             </a>
 
-            <a className="iconLink" href="https://www.linkedin.com/in/mohamed-tfagha-b4a460147/" target="_blank">
+            <a className="iconLink" href="https://www.linkedin.com/in/mohamed-tfagha-b4a460147/" target="_blank" rel="noopener noreferrer">
               <LinkedInIcon />
             </a>
           </div>
@@ -163,7 +186,7 @@ export default function App() {
                 className="btn btnSoft"
                 href="/Mohamed-Tfagha-Frontend-Engineer.pdf"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 View Resume
               </a>
@@ -199,7 +222,6 @@ export default function App() {
         <section id="skills" className="section">
           <div className="sectionHead">
             <h2 className="sectionTitle">Skills</h2>
-            
           </div>
 
           <div className="skills">
@@ -216,7 +238,6 @@ export default function App() {
         <section id="contact" className="section">
           <div className="sectionHead">
             <h2 className="sectionTitle">Contact</h2>
-           
           </div>
 
           <div className="contactCard">
@@ -232,8 +253,8 @@ export default function App() {
 
             <div className="contactBtns">
               <a className="btnPrimary" href="mailto:tfagham@gmail.com">Email me</a>
-              <a className="btn" href="https://www.linkedin.com/in/mohamed-tfagha-b4a460147/" target="_blank">LinkedIn</a>
-              <a className="btn" href="https://github.com/Mohamedt19" target="_blank">GitHub</a>
+              <a className="btn" href="https://www.linkedin.com/in/mohamed-tfagha-b4a460147/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a className="btn" href="https://github.com/Mohamedt19" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
           </div>
         </section>

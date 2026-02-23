@@ -83,7 +83,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
 }
 
 .logo {
@@ -123,7 +122,8 @@ body {
   gap: 10px;
 }
 
-.iconLink {
+.iconLink,
+.toggle {
   width: 40px;
   height: 40px;
   border-radius: 12px;
@@ -133,27 +133,11 @@ body {
   align-items: center;
   justify-content: center;
   color: var(--text);
-  text-decoration: none;
-  transition: transform 0.12s ease, background 0.12s ease, opacity 0.12s ease;
-}
-
-.iconLink:hover {
-  background: var(--linkHover);
-  transform: translateY(-1px);
-}
-
-.toggle {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  color: var(--text);
   cursor: pointer;
-  font-size: 16px;
-  transition: transform 0.12s ease, background 0.12s ease;
+  transition: 0.15s ease;
 }
 
+.iconLink:hover,
 .toggle:hover {
   background: var(--linkHover);
   transform: translateY(-1px);
@@ -178,17 +162,6 @@ body {
   overflow: hidden;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, var(--accentSoft), transparent 70%);
-  top: -140px;
-  right: -140px;
-  pointer-events: none;
-}
-
 .heroTitle {
   margin: 0;
   font-size: 38px;
@@ -200,7 +173,6 @@ body {
   margin-top: 10px;
   color: var(--muted);
   line-height: 1.55;
-  font-size: 15px;
   max-width: 720px;
 }
 
@@ -211,13 +183,8 @@ body {
   flex-wrap: wrap;
 }
 
-.heroBtns .btn,
-.heroBtns .btnPrimary {
-  min-width: 150px;
-}
-
 .ctaGroup {
-  display: inline-flex;
+  display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
@@ -230,10 +197,6 @@ body {
   margin-top: 22px;
 }
 
-.sectionHead {
-  margin-bottom: 12px;
-}
-
 .sectionTitle {
   margin: 0;
   font-size: 14px;
@@ -242,23 +205,8 @@ body {
 }
 
 .sectionSub {
-  margin: 6px 0 0;
+  margin-top: 6px;
   color: var(--muted);
-  font-size: 14px;
-}
-
-.note {
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono";
-  background: var(--accentSoft);
-  color: var(--text);
-  padding: 2px 6px;
-  border-radius: 8px;
 }
 
 /* =========================
@@ -268,7 +216,6 @@ body {
 .grid {
   display: grid;
   gap: 14px;
-  grid-template-columns: 1fr;
 }
 
 @media (min-width: 860px) {
@@ -283,30 +230,27 @@ body {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 14px;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition: 0.18s ease;
 }
 
-.cardTop {
-  margin-bottom: 10px;
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
 }
 
 .cardTitle {
   margin: 0;
   font-size: 18px;
   font-weight: 900;
-  letter-spacing: -0.01em;
 }
 
 .cardSub {
-  margin: 6px 0 0;
+  margin-top: 6px;
   color: var(--muted);
   font-size: 14px;
-  line-height: 1.4;
 }
 
-/* =========================
-   Thumbnail (hover frame + zoom)
-========================= */
+/* Thumbnail */
 
 .thumb {
   display: block;
@@ -314,33 +258,16 @@ body {
   overflow: hidden;
   border: 1px solid var(--border);
   margin-bottom: 8px;
-  background: color-mix(in srgb, var(--panel) 70%, var(--accentSoft));
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
-  transform: translateZ(0);
-}
-
-.thumb:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--accent) 60%, transparent);
-  outline-offset: 3px;
+  background: var(--accentSoft);
+  transition: 0.18s ease;
 }
 
 .thumbImg {
   width: 100%;
-  aspect-ratio: 16 / 7;
-  height: auto;
-  object-fit: contain;
+  aspect-ratio: 16/7;
   display: block;
   padding: 10px;
-
-  transition: transform 220ms ease;
-  transform-origin: center;
-  will-change: transform;
-}
-
-.card:hover .thumb {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+  transition: transform 0.2s ease;
 }
 
 .card:hover .thumbImg {
@@ -348,13 +275,11 @@ body {
 }
 
 .thumbDisabled {
+  pointer-events: none;
   opacity: 0.9;
-  cursor: default;
 }
 
-/* =========================
-   BADGES
-========================= */
+/* Badges */
 
 .badges {
   display: flex;
@@ -368,26 +293,20 @@ body {
   font-weight: 700;
   color: var(--accent);
   background: var(--accentSoft);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
   border-radius: 999px;
   padding: 5px 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
 }
 
-.badgeIcon {
-  font-size: 14px;
-  line-height: 1;
-}
+/* List */
 
 .list {
-  margin: 6px 0 0;
-  line-height: 1.35;
+  margin-top: 8px;
   padding-left: 16px;
   font-size: 13px;
   color: color-mix(in srgb, var(--text) 75%, transparent);
 }
+
+/* Actions */
 
 .actions {
   margin-top: 14px;
@@ -409,57 +328,29 @@ body {
   background: var(--panel);
   color: var(--text);
   font-weight: 800;
-  text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.12s ease, background 0.12s ease, opacity 0.12s ease;
-  cursor: pointer;
+  text-decoration: none;
+  transition: 0.12s ease;
 }
 
 .btn:hover {
   background: var(--linkHover);
-  transform: translateY(-1px);
 }
 
 .btnPrimary {
   background: var(--btn);
   color: var(--btnText);
   border-color: transparent;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .btnPrimary:hover {
   opacity: 0.92;
-  transform: translateY(-1px);
-  color: var(--btnText);  
-  background: var(--btn);
-}
-
-.btnDisabled {
-  opacity: 0.55;
-  pointer-events: none;
 }
 
 .btnSoft {
-  background: color-mix(in srgb, var(--panel) 88%, var(--accentSoft));
-  border-color: color-mix(in srgb, var(--accent) 22%, var(--border));
-  color: var(--text);
-}
-
-.btnSoft:hover {
-  background: color-mix(in srgb, var(--panel) 82%, var(--accentSoft));
-}
-
-.btnDownload {
-  position: relative;
-}
-
-.btnDownload::before {
-  content: "⬇︎";
-  font-size: 14px;
-  margin-right: 8px;
-  line-height: 1;
+  background: var(--accentSoft);
 }
 
 /* =========================
@@ -479,12 +370,11 @@ body {
 
 .skill {
   border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--panel) 85%, var(--accentSoft));
+  background: var(--accentSoft);
   padding: 8px 12px;
   border-radius: 999px;
   font-weight: 800;
   font-size: 13px;
-  color: color-mix(in srgb, var(--text) 85%, transparent);
 }
 
 /* =========================
@@ -501,18 +391,10 @@ body {
   gap: 12px;
 }
 
-@media (min-width: 700px) {
-  .contactCard {
-    grid-template-columns: 1fr 1fr auto;
-    align-items: end;
-  }
-}
-
 .contactLabel {
   font-size: 12px;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
   font-weight: 800;
 }
 
@@ -524,7 +406,6 @@ body {
 .contactBtns {
   display: flex;
   gap: 10px;
-  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
@@ -540,13 +421,15 @@ body {
 .mutedSmall {
   color: var(--muted);
   font-size: 12px;
-  font-weight: 700;
 }
 
 .muted {
   color: var(--muted);
-  font-weight: 800;
 }
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 640px) {
   .nav {
@@ -558,9 +441,5 @@ body {
   .navRight {
     width: 100%;
     justify-content: space-between;
-  }
-
-  .navLinks {
-    gap: 12px;
   }
 }

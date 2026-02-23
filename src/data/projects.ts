@@ -1,3 +1,6 @@
+// Project type used by the portfolio card component.
+// Keeping this centralized makes it easy to add or reorder projects.
+
 export type Project = {
   title: string;
   subtitle: string;
@@ -7,20 +10,22 @@ export type Project = {
   repoUrl?: string;
   imageUrl?: string;
 
-  /** controls preview framing */
+  /** controls preview framing inside the card */
   imageFit?: "cover" | "contain";
   imagePos?: string;
 };
 
+// Main portfolio projects
 export const projects: Project[] = [
   {
     title: "Job Tracker",
-    subtitle: "Track job applications with search + status filtering.",
-    tech: ["React", "TypeScript", "State", "Local Storage"],
+    subtitle:
+      "Application tracking dashboard with search, filtering, and status management.",
+    tech: ["React", "TypeScript", "State Management", "LocalStorage"],
     highlights: [
-      "Add, edit, and delete jobs",
-      "Search and status filtering",
-      "Clean responsive UI",
+      "Add, edit, and delete applications",
+      "Search and status-based filtering",
+      "Responsive UI with dark mode support",
     ],
     demoUrl: "https://job-tracker-react-two.vercel.app/",
     repoUrl: "https://github.com/Mohamedt19/job-tracker-react",
@@ -32,12 +37,12 @@ export const projects: Project[] = [
   {
     title: "GitHub Explorer",
     subtitle:
-      "Search GitHub users and browse repositories with advanced filtering.",
-    tech: ["React", "TypeScript", "Fetch", "Hooks"],
+      "GitHub user search with repository browsing, filtering, and performance optimizations.",
+    tech: ["React", "TypeScript", "GitHub API", "Custom Hooks"],
     highlights: [
-      "Debounced search for performance",
+      "Debounced search for improved performance",
       "Repository filtering & sorting",
-      "Skeleton loading + language indicators",
+      "Skeleton loading and language indicators",
     ],
     demoUrl: "https://github-explorer-seven-woad.vercel.app/",
     repoUrl: "https://github.com/Mohamedt19/github-explorer",
@@ -48,12 +53,13 @@ export const projects: Project[] = [
 
   {
     title: "Kanban Lite",
-    subtitle: "Drag-and-drop task board for workflow organization.",
-    tech: ["React", "TypeScript", "Reducer", "Drag & Drop"],
+    subtitle:
+      "Drag-and-drop workflow board for task organization and productivity.",
+    tech: ["React", "TypeScript", "useReducer", "Drag & Drop API"],
     highlights: [
       "Tab-based workflow management",
       "Drag & drop between columns",
-      "Animated empty states",
+      "Smooth animations and empty states",
     ],
     demoUrl: "https://kanban-lite-ashy.vercel.app/",
     repoUrl: "https://github.com/Mohamedt19/kanban-lite",
