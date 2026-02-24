@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import "./styles.css";
 import { projects } from "./data/projects";
 
@@ -265,6 +266,8 @@ export default function App() {
           </span>
         </footer>
       </main>
+
+      <Analytics />
     </div>
   );
 }
